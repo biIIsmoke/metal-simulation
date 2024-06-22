@@ -43,7 +43,10 @@ public class PlasticDeformationController : MonoBehaviour
         
         //do the mesh update
         mesh.SetVertices(vertices);
-        meshCollider.sharedMesh = mesh;
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
+        mesh.RecalculateTangents();
+        //meshCollider.sharedMesh = mesh;
         
         vertexBuffer.Dispose();
         
