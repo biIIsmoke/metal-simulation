@@ -18,14 +18,14 @@ public class Ball : MonoBehaviour
         if (other.gameObject.CompareTag("Deformable"))
         {
             ContactPoint contactPoint = other.GetContact(0);
-            Debug.Log(contactPoint.point);
+            //Debug.Log(contactPoint.point);
         
             PlasticDeformationController controller = other.gameObject.GetComponent<PlasticDeformationController>();
         
             controller.impactPoint = contactPoint.point;
             controller.impactVector = rb.velocity;
         
-            Debug.Log(controller.impactVector);
+            //Debug.Log(controller.impactVector);
         
             controller.OnGPUCall();
             Destroy(gameObject);

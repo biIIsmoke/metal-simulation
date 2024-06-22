@@ -9,6 +9,7 @@ public class PlasticDeformationController : MonoBehaviour
 {
     [SerializeField] private ComputeShader plasticDeformationShader;
     [SerializeField] private Mesh mesh;
+    [SerializeField] private MeshCollider meshCollider;
     [SerializeField] private Vector3[] vertices;
     
     public Vector3 impactPoint;
@@ -18,6 +19,7 @@ public class PlasticDeformationController : MonoBehaviour
     private void Start()
     {
         MeshFilter meshFilter = GetComponent<MeshFilter>();
+        meshCollider = GetComponent<MeshCollider>();
         mesh = meshFilter.mesh;
         vertices = mesh.vertices;
     }
@@ -40,8 +42,8 @@ public class PlasticDeformationController : MonoBehaviour
         vertexBuffer.GetData(vertices);
         
         //do the mesh update
-        
         mesh.SetVertices(vertices);
+        meshCollider.sharedMesh = mesh;
         
         vertexBuffer.Dispose();
         

@@ -5,14 +5,25 @@ RWStructuredBuffer<float3> vertices;
 float3 impactPoint;
 float3 impactVector;
 
-[numthreads(10,1,1)]
+float distance(float3 point1, float3 point2)
+{
+    float x = point1.x - point2.x;
+    float y = point1.y - point2.y;
+    float z = point1.z - point2.z;
+
+    return sqrt(x*x+y*y+z*z);
+}
+
+[numthreads(1024,1,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     float3 vertex = vertices[id.x];
-    vertex = vertex + float3(1.0,0.0,0.0);
-    if (true)
+
+    float impactDistance = distance(impactPoint,vertex);
+    
+    if (impactDistance<0.25)//use impact point and vector to change vertex positions
     {
-        
+        vertex = vertex + impactVector/(impactDistance*impactDistance);
     }
 
     vertices[id.x] = vertex;
