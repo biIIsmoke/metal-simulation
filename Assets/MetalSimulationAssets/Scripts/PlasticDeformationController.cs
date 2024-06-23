@@ -25,7 +25,8 @@ public class PlasticDeformationController : MonoBehaviour
     public float minDamage = 1.0f;
     
     
-    public bool useGPU = false;
+    public bool useGPU = true;
+    public bool updateCollider = true;
     public Vector3 impactPoint;
     
     private MeshFilter meshFilter;
@@ -78,7 +79,10 @@ public class PlasticDeformationController : MonoBehaviour
         //meshFilter.mesh.RecalculateBounds();
         //meshFilter.mesh.RecalculateNormals();
         //meshFilter.mesh.RecalculateTangents();
-        meshCollider.sharedMesh = meshFilter.mesh; //make this faster somehow
+        if (updateCollider)
+        {
+            meshCollider.sharedMesh = meshFilter.mesh; //make this faster somehow
+        }
     }
     private void OnGPUCall()
     {
@@ -139,6 +143,10 @@ public class PlasticDeformationController : MonoBehaviour
     public void ToggleGPU()
     {
         useGPU = !useGPU;
+    }
+    public void ToggleUpdateCollider()
+    {
+        updateCollider = !updateCollider;
     }
     private void OnGUI()
     {
