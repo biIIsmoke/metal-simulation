@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="474e92b9-72da-4b9c-9858-8f7e2b02f311" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ImpactDeformationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ImpactDeformationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ShootBalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ShootBalls.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/PC/PC_High.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/PC/PC_High.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SharedAssets/TextMeshPro/Sprites/EmojiOne.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/SharedAssets/TextMeshPro/Sprites/EmojiOne.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +62,7 @@
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../Builds\metal-simulation.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Build\metal-simulation.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\duman\Desktop\20232\CENG469\Project\Builds" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -110,6 +117,7 @@
       <workItem from="1719076885189" duration="10195000" />
       <workItem from="1719112280309" duration="8883000" />
       <workItem from="1719124492662" duration="305000" />
+      <workItem from="1719169815377" duration="133000" />
     </task>
     <servers />
   </component>

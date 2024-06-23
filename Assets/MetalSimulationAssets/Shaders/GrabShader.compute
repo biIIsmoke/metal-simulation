@@ -2,7 +2,6 @@
 #pragma kernel CSSecond
 
 // Create a RenderTexture with enableRandomWrite flag and set it
-// with cs.SetTexture
 RWStructuredBuffer<float3> vertices;
 StructuredBuffer<float3> defaultVertices; //to check maximum deform and also use it for elasticity, only gets set once, this will change if we go beyond maxElasticity and cause a plastic deformation
 

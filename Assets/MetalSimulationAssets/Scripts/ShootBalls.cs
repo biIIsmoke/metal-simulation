@@ -26,7 +26,6 @@ public class ShootBalls : MonoBehaviour
     
     private IEnumerator CheckClick()
     {
-        // Wait until the end of the frame
         yield return new WaitForEndOfFrame();
 
         if (EventSystem.current.IsPointerOverGameObject())

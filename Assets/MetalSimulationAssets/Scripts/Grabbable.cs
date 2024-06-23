@@ -79,7 +79,7 @@ public class Grabbable : MonoBehaviour
         //Debug.Log("left click is released");
         CallShader();
     }
-    // Start is called before the first frame update
+    
     void Start()
     {
         kernel = grabShader.FindKernel("CSSecond");
@@ -109,7 +109,7 @@ public class Grabbable : MonoBehaviour
     
     public void CallShader()
     {
-        Debug.Log("calling shader each frame");
+        //Debug.Log("calling shader each frame");
         int vector3Size = sizeof(float) * 3;
         int totalSize = vector3Size;
         

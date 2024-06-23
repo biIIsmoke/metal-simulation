@@ -105,7 +105,6 @@ public class ImpactDeformationController : MonoBehaviour
         plasticDeformationShader.SetFloat("minDamage", minDamage);
         
         plasticDeformationShader.SetBuffer(kernel,"vertices", vertexBuffer);
-        //plasticDeformationShader.SetFloat("resolution", vertices.Length);
         plasticDeformationShader.SetVector("impactPoint", impactPoint);
         
         plasticDeformationShader.Dispatch(kernel, vertices.Length/1024,1,1);
