@@ -23,9 +23,10 @@ float distance(float3 point1, float3 point2)
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     float3 vertex = vertices[id.x];
+    float3 defaultVertex = vertices[id.x];
 
     float distanceFromCollision = distance(vertex, impactPoint);
-    float distanceFromOriginal = distance(defaultVertices[id.x], vertex);
+    float distanceFromOriginal = distance(defaultVertex, vertex);
 
     if (distanceFromCollision < deformRadius && distanceFromOriginal < maxDeform)
     {

@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="474e92b9-72da-4b9c-9858-8f7e2b02f311" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/PlasticDeformationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/PlasticDeformationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/PlasticDeformationShader.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/PlasticDeformationShader.compute" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +53,14 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../Builds\metal-simulation.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\duman\Desktop\20232\CENG469\Project\Builds" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.27f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\duman\Desktop\20232\CENG469\Project\metal-simulation -debugCodeOptimization" />
@@ -102,6 +108,7 @@
       <updated>1719076882176</updated>
       <workItem from="1719076885189" duration="10195000" />
       <workItem from="1719112280309" duration="8883000" />
+      <workItem from="1719124492662" duration="305000" />
     </task>
     <servers />
   </component>

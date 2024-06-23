@@ -37,7 +37,7 @@ public class PlasticDeformationController : MonoBehaviour
         meshFilter = GetComponent<MeshFilter>();
         meshCollider = GetComponent<MeshCollider>();
         vertices = meshFilter.mesh.vertices;
-        defaultVertices = vertices;
+        defaultVertices = meshFilter.mesh.vertices;
         
         //sends default vertex data to be used in calculations without change
         int vector3Size = sizeof(float) * 3;
@@ -45,6 +45,7 @@ public class PlasticDeformationController : MonoBehaviour
         defaultVertexBuffer = new ComputeBuffer(defaultVertices.Length, totalSize);
         defaultVertexBuffer.SetData(defaultVertices);
         plasticDeformationShader.SetBuffer(0,"defaultVertices", defaultVertexBuffer);
+        defaultVertexBuffer.Dispose();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -142,6 +143,6 @@ public class PlasticDeformationController : MonoBehaviour
 
     private void OnDestroy()
     {
-        defaultVertexBuffer.Dispose();
+        
     }
 }
