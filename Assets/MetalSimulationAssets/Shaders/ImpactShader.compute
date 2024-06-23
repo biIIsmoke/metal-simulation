@@ -28,7 +28,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     float distanceFromCollision = distance(vertex, impactPoint);
     float distanceFromOriginal = distance(defaultVertex, vertex);
 
-    if (distanceFromCollision < deformRadius && distanceFromOriginal < maxDeform)
+    if (distanceFromCollision < deformRadius && distanceFromOriginal < maxDeform) //plastic, use time to deform but don't get back and update the default vertex so it's original position is changed 
     {
         float falloff = 1 - (distanceFromCollision / deformRadius) * damageFalloff;
 
@@ -43,7 +43,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
         float3 deform = float3(xDeform, yDeform, zDeform);
         vertex -= deform * damageMultiplier;
     }
-    else
+    else //elastic, use time to deform, time to get back
     {
         //vertex += float3(1.0,0.0,0.0);
     }

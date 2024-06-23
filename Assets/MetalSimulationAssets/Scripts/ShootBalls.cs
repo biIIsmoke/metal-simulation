@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ShootBalls : MonoBehaviour
 {
     [SerializeField] private GameObject prefabToInstantiate;
     [SerializeField] private float speed = 7.0f;
     [SerializeField] private Camera cam;
+    [SerializeField] private bool canShoot = true;
+    
 
     private void Start()
     {
@@ -32,15 +35,23 @@ public class ShootBalls : MonoBehaviour
         }
         else
         {
-            Ray mouseRay = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            GameObject newGameObject = Instantiate(prefabToInstantiate, mouseRay.origin, Quaternion.identity);
-            Rigidbody rb = newGameObject.GetComponent<Rigidbody>();
- 
-            if (rb != null)
+            if (canShoot)
             {
-                rb.velocity = mouseRay.direction * speed;
+                Ray mouseRay = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+                GameObject newGameObject = Instantiate(prefabToInstantiate, mouseRay.origin, Quaternion.identity);
+                Rigidbody rb = newGameObject.GetComponent<Rigidbody>();
+ 
+                if (rb != null)
+                {
+                    rb.velocity = mouseRay.direction * speed;
+                }
             }
         }
+    }
+
+    public void ToggleShoot()
+    {
+        canShoot = !canShoot;
     }
     
 }
