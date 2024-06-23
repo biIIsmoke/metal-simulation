@@ -72,6 +72,14 @@ public class PlasticDeformationController : MonoBehaviour
         }
     }
 
+    void UpdateMesh()
+    {
+        meshFilter.mesh.vertices = vertices;
+        //meshFilter.mesh.RecalculateBounds();
+        //meshFilter.mesh.RecalculateNormals();
+        //meshFilter.mesh.RecalculateTangents();
+        meshCollider.sharedMesh = meshFilter.mesh; //make this faster somehow
+    }
     private void OnGPUCall()
     {
         int vector3Size = sizeof(float) * 3;
@@ -95,12 +103,9 @@ public class PlasticDeformationController : MonoBehaviour
         
         vertexBuffer.GetData(vertices);
         
-        //do the mesh update
-        meshFilter.mesh.vertices = vertices;
-        //meshFilter.mesh.RecalculateBounds();
-        //meshFilter.mesh.RecalculateNormals();
-        //meshFilter.mesh.RecalculateTangents();
-        //meshCollider.sharedMesh = meshFilter.mesh;
+        
+        //apply changes
+        UpdateMesh();
         vertexBuffer.Dispose();
     }
 
@@ -129,8 +134,7 @@ public class PlasticDeformationController : MonoBehaviour
             }
         }
         //apply changes
-        meshFilter.mesh.vertices = vertices;
-        meshCollider.sharedMesh = meshFilter.mesh;
+        UpdateMesh();
     }
     public void ToggleGPU()
     {
