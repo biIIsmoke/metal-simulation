@@ -32,9 +32,15 @@ void CSSecond (uint3 id : SV_DispatchThreadID)
     float3 vertex = vertices[id.x];
     float3 defaultVertex = defaultVertices[id.x]; 
     
-    if(distance(vertex,grabPosition)<grabRadius)
+    if(distance(vertex,grabPosition)<grabRadius) //inside our grab sphere so it takes a chunk then moves it
     {
         vertex += currentPosition-grabPosition;
+    }
+    //do displacement calculations, check maxElasticity, maxDeform variables to determine elastic, plastic and ruptures.
+    //but i don't have any energy left. i'm on this for the last 4 days uninterrupted and from 5 am today till now.
+    else 
+    {
+        
     }
 
     vertices[id.x] = vertex;

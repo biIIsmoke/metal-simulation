@@ -5,14 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="474e92b9-72da-4b9c-9858-8f7e2b02f311" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Prefabs/Armadillo.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Prefabs/Armadillo.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ImpactDeformationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ImpactDeformationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/SphereGrabber.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/SphereGrabber.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
