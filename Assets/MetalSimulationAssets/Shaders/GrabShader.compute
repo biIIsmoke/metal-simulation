@@ -23,14 +23,13 @@ float distance(float3 point1, float3 point2)
 
 float displacement(float distance)
 {
-    float divisor;
     if(distance <= 0)
     {
-        return float3(0,0,0);
+        return 0;
     }
     else
     {
-        
+        return 1;
     }
 }
 
@@ -45,23 +44,33 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     float3 vertex = vertices[id.x];
     float3 defaultVertex = vertices[id.x];
     
-    float distanceFromSphere = distance(vertex, grabPosition)-grabSize; //subtract grabSize because inside of the sphere won't be affected by anything, it'll just move with the sphere
+    float distanceFromGrab = distance(vertex, grabPosition)-grabSize; //subtract grabSize because inside of the sphere won't be affected by anything, it'll just move with the sphere
+    float distanceFromCurrent = distance(vertex, currentPosition)-grabSize; //subtract grabSize because inside of the sphere won't be affected by anything, it'll just move with the sphere
     float distanceFromDefault = distance(defaultVertex, vertex); //distance from original position
     
-    if(distanceFromDefault < maxElasticity)
+    if(distanceFromGrab>0) // if distance from grab > 0, do calculative displacement
     {
-        //do elastic
-        vertex = vertex + displacement(distanceFromSphere) * (direction(vertex, currentPosition)/distanceFromSphere);
-    }
-    else
-    {
-        if(distanceFromDefault < maxDeform)
+        if(distanceFromDefault < maxElasticity)
         {
-            //do plastic
+            //do elastic
+            //vertex = vertex + displacement(distanceFromSphere) * (direction(vertex, currentPosition)/distanceFromSphere);
         }
         else
         {
-            //rupture
+            if(distanceFromDefault < maxDeform)
+            {
+                //do plastic
+            }
+            else
+            {
+                //rupture
+            }
         }
     }
+    else //just add grab to current displacement
+    {
+        vertex = vertex - normalize(direction(grabPosition, currentPosition))*displacement(distanceFromCurrent);
+        
+    }
+    vertices[id.x] = vertex;
 }

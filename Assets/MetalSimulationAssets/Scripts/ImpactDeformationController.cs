@@ -61,6 +61,9 @@ public class ImpactDeformationController : MonoBehaviour
             {
                 impactPoint = transform.InverseTransformPoint(contactPoint.point);
                 
+                //Debug.Log($"normal{contactPoint.point}");
+                //Debug.Log($"inverse{impactPoint}");
+                
                 if (useGPU)
                 {
                     OnGPUCall();
