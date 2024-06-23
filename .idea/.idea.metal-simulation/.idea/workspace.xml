@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="474e92b9-72da-4b9c-9858-8f7e2b02f311" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/SphereGrabber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/SphereGrabber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +21,9 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/913bb12059fd4cef8da5cc94ad2f093313e400/b5/3f64f7cd/Mesh.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ImpactDeformationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ShootBalls.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Plugins/UI/InputSystemUIInputModule.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

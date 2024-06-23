@@ -5,10 +5,18 @@
 // with cs.SetTexture
 RWTexture2D<float4> Result;
 
+float distance(float3 point1, float3 point2)
+{
+    float x = point1.x - point2.x;
+    float y = point1.y - point2.y;
+    float z = point1.z - point2.z;
+
+    return sqrt(x*x+y*y+z*z);
+}
+
 [numthreads(8,8,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
-    // TODO: insert actual code here!
-
-    Result[id.xy] = float4(id.x & id.y, (id.x & 15)/15.0, (id.y & 15)/15.0, 0.0);
+    
+    if()
 }

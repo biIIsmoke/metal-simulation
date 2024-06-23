@@ -1545,12 +1545,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1350161963}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb9e12432ad61ad46a65cda0f75e15f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabShader: {fileID: 0}
+  grabShader: {fileID: 7200000, guid: a85596c7c9374664da72c0a93e2c9e83, type: 3}
+  vertices: []
+  defaultVertices: []
+  grabPosition: {x: 0, y: 0, z: 0}
+  grabRadius: 0
+  maxDeform: 0.1
+  maxElasticity: 0.1
 --- !u!1 &1412889196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1759,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c7ba633ad17c14d9666f1e78fad1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseClick:
+    m_Name: Mouse Click
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e9308e62-cd6f-4ada-9f34-92868732eb95
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3bd1ee5c-d311-464e-9548-2341754aae73
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Click
+      m_Flags: 0
+    m_Flags: 0
   canGrab: 0
+  sphere: {fileID: 2715108632931235610, guid: a0ed75c10b5469a4db0e77c9344bd692, type: 3}
+  worldPosition: {x: 0, y: 0, z: 0}
+  mouseDragSpeed: 0.1
+  mainCamera: {fileID: 0}
 --- !u!4 &1521865104
 Transform:
   m_ObjectHideFlags: 0
