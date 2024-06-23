@@ -50,7 +50,7 @@ After refactoring the code i got a success on basic pull.
 
 https://github.com/biIIsmoke/metal-simulation/assets/51231331/2f30d533-0fc8-4ab3-9857-a7f960270477
 
-
+I think the issue was originating from local-global coordinate differences. I didn't encounter it before because using colliders, they give out ContactPoint data type and it has the local coordinates. But doing collision check myself, i didn't think to check them because my Armadillo was near the origin. I found out when i tried to move it after i've put two different Armadillo into the scene.
 
 
 
