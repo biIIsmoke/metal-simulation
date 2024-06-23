@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -26,9 +27,10 @@ public class PlasticDeformationController : MonoBehaviour
     
     public bool useGPU = false;
     public Vector3 impactPoint;
-    public Vector3 impactVector;
     
     private MeshFilter meshFilter;
+    private ComputeBuffer vertexBuffer;
+    private ComputeBuffer defaultVertexBuffer;
 
     private void Start()
     {
@@ -36,6 +38,13 @@ public class PlasticDeformationController : MonoBehaviour
         meshCollider = GetComponent<MeshCollider>();
         vertices = meshFilter.mesh.vertices;
         defaultVertices = vertices;
+        
+        //sends default vertex data to be used in calculations without change
+        int vector3Size = sizeof(float) * 3;
+        int totalSize = vector3Size;
+        defaultVertexBuffer = new ComputeBuffer(defaultVertices.Length, totalSize);
+        defaultVertexBuffer.SetData(defaultVertices);
+        plasticDeformationShader.SetBuffer(0,"defaultVertices", defaultVertexBuffer);
     }
 
     private void OnCollisionEnter(Collision other)
@@ -48,15 +57,14 @@ public class PlasticDeformationController : MonoBehaviour
         {
             foreach (ContactPoint contactPoint in other.contacts)
             {
+                impactPoint = transform.InverseTransformPoint(contactPoint.point);
+                
                 if (useGPU)
                 {
-                    impactPoint = contactPoint.point;
-                    impactVector = other.gameObject.GetComponent<Rigidbody>().velocity;
                     OnGPUCall();
                 }
                 else
                 {
-                    impactPoint = transform.InverseTransformPoint(contactPoint.point);
                     OnCPUCall();
                 }
             }
@@ -68,27 +76,31 @@ public class PlasticDeformationController : MonoBehaviour
         int vector3Size = sizeof(float) * 3;
         int totalSize = vector3Size;
         
-        ComputeBuffer vertexBuffer = new ComputeBuffer(vertices.Length, totalSize);
+        vertexBuffer = new ComputeBuffer(vertices.Length, totalSize);
         vertexBuffer.SetData(vertices);
+        
+        //set constraints
+        plasticDeformationShader.SetFloat("deformRadius", deformRadius);
+        plasticDeformationShader.SetFloat("maxDeform", maxDeform);
+        plasticDeformationShader.SetFloat("damageFalloff", damageFalloff);
+        plasticDeformationShader.SetFloat("damageMultiplier", damageMultiplier);
+        plasticDeformationShader.SetFloat("minDamage", minDamage);
         
         plasticDeformationShader.SetBuffer(0,"vertices", vertexBuffer);
         //plasticDeformationShader.SetFloat("resolution", vertices.Length);
         plasticDeformationShader.SetVector("impactPoint", impactPoint);
-        plasticDeformationShader.SetVector("impactVector", impactVector);
         
-        plasticDeformationShader.Dispatch(0, vertices.Length/10,1,1);
+        plasticDeformationShader.Dispatch(0, vertices.Length/1024,1,1);
         
         vertexBuffer.GetData(vertices);
         
         //do the mesh update
         meshFilter.mesh.vertices = vertices;
-        meshFilter.mesh.RecalculateBounds();
-        meshFilter.mesh.RecalculateNormals();
-        meshFilter.mesh.RecalculateTangents();
-        meshCollider.sharedMesh = meshFilter.mesh;
-        
+        //meshFilter.mesh.RecalculateBounds();
+        //meshFilter.mesh.RecalculateNormals();
+        //meshFilter.mesh.RecalculateTangents();
+        //meshCollider.sharedMesh = meshFilter.mesh;
         vertexBuffer.Dispose();
-        
     }
 
     private void OnCPUCall()
@@ -118,7 +130,6 @@ public class PlasticDeformationController : MonoBehaviour
         //apply changes
         meshFilter.mesh.vertices = vertices;
         meshCollider.sharedMesh = meshFilter.mesh;
-
     }
 
     private void OnGUI()
@@ -127,5 +138,10 @@ public class PlasticDeformationController : MonoBehaviour
         {
             OnGPUCall();
         }
+    }
+
+    private void OnDestroy()
+    {
+        defaultVertexBuffer.Dispose();
     }
 }

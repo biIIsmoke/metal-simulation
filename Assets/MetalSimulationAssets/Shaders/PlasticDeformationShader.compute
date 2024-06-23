@@ -2,8 +2,13 @@
 #pragma kernel CSMain
 
 RWStructuredBuffer<float3> vertices;
+StructuredBuffer<float3> defaultVertices; //to check maximum deform and also use it for elasticity, only gets set once
 float3 impactPoint;
-float3 impactVector;
+float deformRadius;
+float maxDeform;
+float damageFalloff;
+float damageMultiplier;
+float minDamage;
 
 float distance(float3 point1, float3 point2)
 {
@@ -19,12 +24,29 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 {
     float3 vertex = vertices[id.x];
 
-    float impactDistance = distance(impactPoint,vertex);
-    
-    if (impactDistance<0.5)//use impact point and vector to change vertex positions
+    float distanceFromCollision = distance(vertex, impactPoint);
+    float distanceFromOriginal = distance(defaultVertices[id.x], vertex);
+
+    if (distanceFromCollision < deformRadius && distanceFromOriginal < maxDeform)
     {
-        vertex = vertex - impactVector;
+        float falloff = 1 - (distanceFromCollision / deformRadius) * damageFalloff;
+
+        float xDeform = impactPoint.x * falloff;
+        float yDeform = impactPoint.y * falloff;
+        float zDeform = impactPoint.z * falloff;
+
+        xDeform = clamp(xDeform, 0, maxDeform);
+        yDeform = clamp(yDeform, 0, maxDeform);
+        zDeform = clamp(zDeform, 0, maxDeform);
+
+        float3 deform = float3(xDeform, yDeform, zDeform);
+        vertex -= deform * damageMultiplier;
     }
+    else
+    {
+        //vertex += float3(1.0,0.0,0.0);
+    }
+    
 
     vertices[id.x] = vertex;
 }
