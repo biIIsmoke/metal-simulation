@@ -1556,7 +1556,7 @@ MonoBehaviour:
   grabPosition: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   grabRadius: 0
-  maxDeform: 0.1
+  maxDeform: 0.2
   maxElasticity: 0.1
 --- !u!1 &1412889196
 GameObject:

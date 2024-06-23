@@ -21,6 +21,24 @@ float distance(float3 point1, float3 point2)
     return sqrt(x*x+y*y+z*z);
 }
 
+float displacement(float distance)
+{
+    float divisor;
+    if(distance <= 0)
+    {
+        return float3(0,0,0);
+    }
+    else
+    {
+        
+    }
+}
+
+float3 direction(float3 point1, float3 point2)
+{
+    return point1-point2;
+}
+
 [numthreads(512,1,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
@@ -33,6 +51,7 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     if(distanceFromDefault < maxElasticity)
     {
         //do elastic
+        vertex = vertex + displacement(distanceFromSphere) * (direction(vertex, currentPosition)/distanceFromSphere);
     }
     else
     {

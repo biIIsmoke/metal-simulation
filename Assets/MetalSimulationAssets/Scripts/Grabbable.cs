@@ -11,9 +11,9 @@ public class Grabbable : MonoBehaviour
     [SerializeField] private Vector3 currentPosition;
     [SerializeField] private float grabRadius;
     
-    [Range(0,10)]
-    [SerializeField] private float maxDeform = 0.1f;
-    [Range(0,10)]
+    [Range(0,1)]
+    [SerializeField] private float maxDeform = 0.2f;
+    [Range(0,1)]
     [SerializeField] private float maxElasticity = 0.1f;
     
     
