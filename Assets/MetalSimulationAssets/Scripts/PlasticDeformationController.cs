@@ -132,13 +132,18 @@ public class PlasticDeformationController : MonoBehaviour
         meshFilter.mesh.vertices = vertices;
         meshCollider.sharedMesh = meshFilter.mesh;
     }
-
+    public void ToggleGPU()
+    {
+        useGPU = !useGPU;
+    }
     private void OnGUI()
     {
+        /*
         if (GUI.Button(new Rect(0, 0, 100, 50), "GPU Call"))
         {
             OnGPUCall();
         }
+        */
     }
 
     private void OnDestroy()
