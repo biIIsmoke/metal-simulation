@@ -6,7 +6,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class PlasticDeformationController : MonoBehaviour
+public class ImpactDeformationController : MonoBehaviour
 {
     [SerializeField] private ComputeShader plasticDeformationShader;
     [SerializeField] private MeshCollider meshCollider;
