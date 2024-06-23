@@ -12,7 +12,9 @@ public class ImpactDeformationController : MonoBehaviour
     [SerializeField] private MeshCollider meshCollider;
     [SerializeField] private Vector3[] vertices; 
     [SerializeField] private Vector3[] defaultVertices;
-
+    
+    int kernel;
+    
     [Range(0,10)]
     [SerializeField] private float deformRadius = 0.2f;
     [Range(0,10)]
@@ -39,13 +41,13 @@ public class ImpactDeformationController : MonoBehaviour
         meshCollider = GetComponent<MeshCollider>();
         vertices = meshFilter.mesh.vertices;
         defaultVertices = meshFilter.mesh.vertices;
-        
+        kernel = plasticDeformationShader.FindKernel("CSMain");
         //sends default vertex data to be used in calculations without change
         int vector3Size = sizeof(float) * 3;
         int totalSize = vector3Size;
         defaultVertexBuffer = new ComputeBuffer(defaultVertices.Length, totalSize);
         defaultVertexBuffer.SetData(defaultVertices);
-        plasticDeformationShader.SetBuffer(0,"defaultVertices", defaultVertexBuffer);
+        plasticDeformationShader.SetBuffer(kernel,"defaultVertices", defaultVertexBuffer);
         defaultVertexBuffer.Dispose();
     }
 
@@ -102,11 +104,11 @@ public class ImpactDeformationController : MonoBehaviour
         plasticDeformationShader.SetFloat("damageMultiplier", damageMultiplier);
         plasticDeformationShader.SetFloat("minDamage", minDamage);
         
-        plasticDeformationShader.SetBuffer(0,"vertices", vertexBuffer);
+        plasticDeformationShader.SetBuffer(kernel,"vertices", vertexBuffer);
         //plasticDeformationShader.SetFloat("resolution", vertices.Length);
         plasticDeformationShader.SetVector("impactPoint", impactPoint);
         
-        plasticDeformationShader.Dispatch(0, vertices.Length/1024,1,1);
+        plasticDeformationShader.Dispatch(kernel, vertices.Length/1024,1,1);
         
         vertexBuffer.GetData(vertices);
         

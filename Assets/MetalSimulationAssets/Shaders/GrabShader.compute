@@ -1,5 +1,5 @@
 // Each #kernel tells which function to compile; you can have many kernels
-#pragma kernel CSMain
+#pragma kernel CSSecond
 
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
@@ -8,7 +8,7 @@ StructuredBuffer<float3> defaultVertices; //to check maximum deform and also use
 
 float3 grabPosition;
 float3 currentPosition;
-float grabSize;
+float grabRadius;
 float maxElasticity;
 float maxDeform;
 
@@ -23,40 +23,18 @@ float distance(float3 point1, float3 point2)
 
 float3 direction(float3 point1, float3 point2)
 {
-    return normalize(point1 - point2); // Corrected to return a unit vector
+    return normalize(point1 - point2);
 }
 
 [numthreads(512, 1, 1)]
-void CSMain (uint3 id : SV_DispatchThreadID)
+void CSSecond (uint3 id : SV_DispatchThreadID)
 {
     float3 vertex = vertices[id.x];
-    float3 defaultVertex = defaultVertices[id.x]; // Correct assignment
+    float3 defaultVertex = defaultVertices[id.x]; 
     
-    float distanceFromGrab = distance(vertex, grabPosition) - grabSize;
-    float distanceFromCurrent = distance(vertex, currentPosition) - grabSize;
-    float distanceFromDefault = distance(defaultVertex, vertex);
-    
-    if(distanceFromGrab > 0) // if distance from grab > 0, do calculative displacement
+    if(distance(vertex,grabPosition)<grabRadius)
     {
-        if(distanceFromDefault < maxElasticity)
-        {
-            // Elastic deformation
-            vertex = defaultVertex + direction(currentPosition, vertex) * distanceFromCurrent * 0.1; // Scaled displacement for elasticity
-        }
-        else if(distanceFromDefault < maxDeform)
-        {
-            // Plastic deformation
-            vertex = vertex + direction(currentPosition, vertex) * (distanceFromCurrent * 0.05); // Scaled displacement for plasticity
-        }
-        else
-        {
-            // Rupture
-            // No additional displacement or maybe some rupture logic
-        }
-    }
-    else // just add grab to current displacement
-    {
-        vertex = vertex + direction(currentPosition, grabPosition) * distanceFromCurrent * 0.5; // Apply displacement inside the grab size
+        vertex += currentPosition-grabPosition;
     }
 
     vertices[id.x] = vertex;
