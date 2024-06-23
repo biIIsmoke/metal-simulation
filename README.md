@@ -50,7 +50,7 @@ After refactoring the code i got a success on basic pull.
 
 https://github.com/biIIsmoke/metal-simulation/assets/51231331/2f30d533-0fc8-4ab3-9857-a7f960270477
 
-The issue was originating from local-global coordinate differences. I forgot to convert them like i did in the first script. But doing collision check myself, i didn't think to check them because my Armadillo was near the origin. I found out when i tried to move it after i've put two different Armadillo into the scene. 
+The issue was originating from local-global coordinate differences. I forgot to convert them like i did in the first script. Doing collision check myself, i checked them but my Armadillo was near the origin so the numbers were similar. I found out when i to moved it after i've put another Armadillo into the scene. 
 
 Now i can take a chunk of some mesh and move it freely.
 
