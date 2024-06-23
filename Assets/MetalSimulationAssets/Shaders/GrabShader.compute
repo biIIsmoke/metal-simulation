@@ -18,59 +18,46 @@ float distance(float3 point1, float3 point2)
     float y = point1.y - point2.y;
     float z = point1.z - point2.z;
 
-    return sqrt(x*x+y*y+z*z);
-}
-
-float displacement(float distance)
-{
-    if(distance <= 0)
-    {
-        return 0;
-    }
-    else
-    {
-        return 1;
-    }
+    return sqrt(x*x + y*y + z*z);
 }
 
 float3 direction(float3 point1, float3 point2)
 {
-    return point1-point2;
+    return normalize(point1 - point2); // Corrected to return a unit vector
 }
 
-[numthreads(512,1,1)]
+[numthreads(512, 1, 1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
     float3 vertex = vertices[id.x];
-    float3 defaultVertex = vertices[id.x];
+    float3 defaultVertex = defaultVertices[id.x]; // Correct assignment
     
-    float distanceFromGrab = distance(vertex, grabPosition)-grabSize; //subtract grabSize because inside of the sphere won't be affected by anything, it'll just move with the sphere
-    float distanceFromCurrent = distance(vertex, currentPosition)-grabSize; //subtract grabSize because inside of the sphere won't be affected by anything, it'll just move with the sphere
-    float distanceFromDefault = distance(defaultVertex, vertex); //distance from original position
+    float distanceFromGrab = distance(vertex, grabPosition) - grabSize;
+    float distanceFromCurrent = distance(vertex, currentPosition) - grabSize;
+    float distanceFromDefault = distance(defaultVertex, vertex);
     
-    if(distanceFromGrab>0) // if distance from grab > 0, do calculative displacement
+    if(distanceFromGrab > 0) // if distance from grab > 0, do calculative displacement
     {
         if(distanceFromDefault < maxElasticity)
         {
-            //do elastic
-            //vertex = vertex + displacement(distanceFromSphere) * (direction(vertex, currentPosition)/distanceFromSphere);
+            // Elastic deformation
+            vertex = defaultVertex + direction(currentPosition, vertex) * distanceFromCurrent * 0.1; // Scaled displacement for elasticity
+        }
+        else if(distanceFromDefault < maxDeform)
+        {
+            // Plastic deformation
+            vertex = vertex + direction(currentPosition, vertex) * (distanceFromCurrent * 0.05); // Scaled displacement for plasticity
         }
         else
         {
-            if(distanceFromDefault < maxDeform)
-            {
-                //do plastic
-            }
-            else
-            {
-                //rupture
-            }
+            // Rupture
+            // No additional displacement or maybe some rupture logic
         }
     }
-    else //just add grab to current displacement
+    else // just add grab to current displacement
     {
-        vertex = vertex - normalize(direction(grabPosition, currentPosition))*displacement(distanceFromCurrent);
-        
+        vertex = vertex + direction(currentPosition, grabPosition) * distanceFromCurrent * 0.5; // Apply displacement inside the grab size
     }
+
     vertices[id.x] = vertex;
 }

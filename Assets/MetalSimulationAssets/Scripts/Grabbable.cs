@@ -39,6 +39,7 @@ public class Grabbable : MonoBehaviour
 
     public void CallShader(Vector3 newCurrentPosition, float grabSize)
     {
+        Debug.Log("calling shader each frame");
         //currentPosition = newCurrentPosition;
         int vector3Size = sizeof(float) * 3;
         int totalSize = vector3Size;
