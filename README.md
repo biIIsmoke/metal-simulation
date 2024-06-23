@@ -46,6 +46,14 @@ https://github.com/biIIsmoke/metal-simulation/assets/51231331/9a488de9-b2d4-42c1
 
 I'm doing some of the calculations wrong because as opposed to following the sphere at hand, all of the vertices transform to a single spherical volume. If i reverse it, they originate their direction vector from it then go outwards.
 
+After refactoring the code i got a success on basic pull.
+
+https://github.com/biIIsmoke/metal-simulation/assets/51231331/2f30d533-0fc8-4ab3-9857-a7f960270477
+
+
+
+
+
 
 
 
