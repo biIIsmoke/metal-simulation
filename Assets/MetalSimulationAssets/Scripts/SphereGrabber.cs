@@ -10,10 +10,12 @@ using UnityEngine.UI;
 public class SphereGrabber : MonoBehaviour
 {
     [SerializeField] private InputAction mouseClick;
+    [SerializeField] private InputAction mouseWheel;
     [SerializeField] private bool canGrab = false;
     [SerializeField] private GameObject sphere;
     [SerializeField] private Vector3 worldPosition;
     [SerializeField] private float mouseDragSpeed = .05f;
+    [SerializeField] private float zDisplacement = 0f;
 
     private Vector3 velocity = Vector3.zero;
     
@@ -31,13 +33,15 @@ public class SphereGrabber : MonoBehaviour
     private void OnEnable()
     {
         mouseClick.Enable();
+        mouseWheel.Enable();
         mouseClick.performed += MousePressed;
+        mouseWheel.performed += WheelTurned;
     }
     
     void Update()
     {
         Vector3 mousePos = Mouse.current.position.ReadValue();
-        mousePos.z = Camera.main.nearClipPlane + 5.0f;
+        mousePos.z = Camera.main.nearClipPlane + 5.0f + zDisplacement;
         worldPosition = Camera.main.ScreenToWorldPoint(mousePos);
         sphere.transform.position = Vector3.SmoothDamp(sphere.transform.position, worldPosition, ref velocity, mouseDragSpeed);
     }
@@ -45,12 +49,21 @@ public class SphereGrabber : MonoBehaviour
     private void OnDisable()
     {
         mouseClick.performed -= MousePressed;
+        mouseWheel.performed -= WheelTurned;
         mouseClick.Disable();
+        mouseWheel.Disable();
     }
 
+    private void WheelTurned(InputAction.CallbackContext context)
+    {
+        Vector2 vec = Mouse.current.scroll.ReadValue();
+        zDisplacement += vec.y/360;
+    }
+    
     private void MousePressed(InputAction.CallbackContext context)
     {
         //mouse pressed call compute shader here
+        
     }
 
     public void ToggleGrab()

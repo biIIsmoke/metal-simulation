@@ -1776,10 +1776,28 @@ MonoBehaviour:
       m_Action: Mouse Click
       m_Flags: 0
     m_Flags: 0
+  mouseWheel:
+    m_Name: Mouse Wheel
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0a36ca4e-791d-473e-b235-4859b04a0cb0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: ff20d242-b07f-40cc-bba3-b8b8a3637cd7
+      m_Path: <Mouse>/scroll
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Mouse Wheel
+      m_Flags: 0
+    m_Flags: 0
   canGrab: 0
   sphere: {fileID: 2715108632931235610, guid: a0ed75c10b5469a4db0e77c9344bd692, type: 3}
   worldPosition: {x: 0, y: 0, z: 0}
   mouseDragSpeed: 0.1
+  zDisplacement: 0
   mainCamera: {fileID: 0}
 --- !u!4 &1521865104
 Transform:
