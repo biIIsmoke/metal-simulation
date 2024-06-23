@@ -21,9 +21,9 @@ void CSMain (uint3 id : SV_DispatchThreadID)
 
     float impactDistance = distance(impactPoint,vertex);
     
-    if (impactDistance<0.25)//use impact point and vector to change vertex positions
+    if (impactDistance<0.5)//use impact point and vector to change vertex positions
     {
-        vertex = vertex + impactVector/(impactDistance*impactDistance);
+        vertex = vertex - impactVector;
     }
 
     vertices[id.x] = vertex;
