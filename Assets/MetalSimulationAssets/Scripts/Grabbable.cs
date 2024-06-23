@@ -8,6 +8,7 @@ public class Grabbable : MonoBehaviour
     [SerializeField] private Vector3[] vertices; 
     [SerializeField] private Vector3[] defaultVertices;
     [SerializeField] private Vector3 grabPosition;
+    [SerializeField] private Vector3 currentPosition;
     [SerializeField] private float grabRadius;
     
     [Range(0,10)]
@@ -36,17 +37,44 @@ public class Grabbable : MonoBehaviour
         defaultVertexBuffer.Dispose();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CallShader(Vector3 newCurrentPosition, float grabSize)
     {
+        //currentPosition = newCurrentPosition;
+        int vector3Size = sizeof(float) * 3;
+        int totalSize = vector3Size;
         
+        vertexBuffer = new ComputeBuffer(vertices.Length, totalSize);
+        vertexBuffer.SetData(vertices);
+        
+        //set constraints
+        grabShader.SetVector("grabPosition", grabPosition);
+        grabShader.SetVector("currentPosition", currentPosition);
+        grabShader.SetFloat("grabSize", grabSize);
+        grabShader.SetFloat("maxElasticity", maxElasticity);
+        grabShader.SetFloat("maxDeform", maxDeform);
+        
+        grabShader.SetBuffer(0,"vertices", vertexBuffer);
+        
+        grabShader.Dispatch(0, vertices.Length/512,1,1);
+        
+        vertexBuffer.GetData(vertices);
+        
+        
+        //apply changes
+        UpdateMesh();
+        vertexBuffer.Dispose();
     }
     
-    void UpdateMesh()
+    private void UpdateMesh()
     {
         meshFilter.mesh.vertices = vertices;
         //meshFilter.mesh.RecalculateBounds();
         //meshFilter.mesh.RecalculateNormals();
         //meshFilter.mesh.RecalculateTangents();
+    }
+
+    public void SetGrabPosition(Vector3 position)
+    {
+        grabPosition = position;
     }
 }

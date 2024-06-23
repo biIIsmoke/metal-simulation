@@ -4,7 +4,13 @@
 // Create a RenderTexture with enableRandomWrite flag and set it
 // with cs.SetTexture
 RWStructuredBuffer<float3> vertices;
-StructuredBuffer<float3> defaultVertices; //to check maximum deform and also use it for elasticity, only gets set once
+StructuredBuffer<float3> defaultVertices; //to check maximum deform and also use it for elasticity, only gets set once, this will change if we go beyond maxElasticity and cause a plastic deformation
+
+float3 grabPosition;
+float3 currentPosition;
+float grabSize;
+float maxElasticity;
+float maxDeform;
 
 float distance(float3 point1, float3 point2)
 {
@@ -15,12 +21,28 @@ float distance(float3 point1, float3 point2)
     return sqrt(x*x+y*y+z*z);
 }
 
-[numthreads(8,8,1)]
+[numthreads(512,1,1)]
 void CSMain (uint3 id : SV_DispatchThreadID)
 {
+    float3 vertex = vertices[id.x];
+    float3 defaultVertex = vertices[id.x];
     
-    if(true)
+    float distanceFromSphere = distance(vertex, grabPosition)-grabSize; //subtract grabSize because inside of the sphere won't be affected by anything, it'll just move with the sphere
+    float distanceFromDefault = distance(defaultVertex, vertex); //distance from original position
+    
+    if(distanceFromDefault < maxElasticity)
     {
-        
+        //do elastic
+    }
+    else
+    {
+        if(distanceFromDefault < maxDeform)
+        {
+            //do plastic
+        }
+        else
+        {
+            //rupture
+        }
     }
 }

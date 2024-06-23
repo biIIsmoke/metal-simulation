@@ -8,6 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.metal-simulation/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Prefabs/IndicatorSphere.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Prefabs/IndicatorSphere.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scenes/MetalSimulationScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/Grabbable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ShootBalls.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/ShootBalls.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/SphereGrabber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Scripts/SphereGrabber.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MetalSimulationAssets/Shaders/GrabShader.compute" afterDir="false" />
     </list>

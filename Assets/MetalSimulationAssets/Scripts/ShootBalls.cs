@@ -21,10 +21,10 @@ public class ShootBalls : MonoBehaviour
 
     public void OnClick(InputAction.CallbackContext context)
     {
-        StartCoroutine(CheckClickUI());
+        StartCoroutine(CheckClick());
     }
     
-    private IEnumerator CheckClickUI()
+    private IEnumerator CheckClick()
     {
         // Wait until the end of the frame
         yield return new WaitForEndOfFrame();
