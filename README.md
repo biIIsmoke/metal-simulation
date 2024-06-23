@@ -1,5 +1,8 @@
 # metal-simulation
 
+Made in Unity 2022.3.27f1
+Build folder added.
+
 My project topic is simulating mechanical properties of metals such as plasticity, elasticity and hardness. 
 
 I started by testing geometry shaders in Unity. I wrote a shader that created pyramid faces on triangles following a tutorial.
