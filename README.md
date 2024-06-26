@@ -58,8 +58,4 @@ The issue was originating from local-global coordinate differences. I forgot to 
 
 Now i can take a chunk of some mesh and move it freely.
 
-https://github.com/biIIsmoke/metal-simulation/assets/51231331/abb756be-2337-4f47-abc0-9469e007bab1
-
-
-
-
+https://github.com/biIIsmoke/metal-simulation/assets/51231331/1bd15d91-8115-4b99-97e5-89aa16a37536
